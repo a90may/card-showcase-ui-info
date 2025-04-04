@@ -1,6 +1,6 @@
 
 import React from "react";
-import { Card, CardContent, CardFooter, CardHeader } from "@/components/ui/card";
+import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Edit, Trash2 } from "lucide-react";
 import { cn } from "@/lib/utils";
@@ -46,27 +46,27 @@ const PersonCard: React.FC<PersonCardProps> = ({
   };
 
   return (
-    <Card className={cn("w-full max-w-md shadow-md hover:shadow-lg transition-shadow duration-300", className)}>
-      <CardHeader className="pb-2 flex flex-row justify-between items-center">
+    <Card className={cn("w-full shadow-sm border-l-4 border-l-blue-500", className)}>
+      <CardHeader className="pb-2 flex flex-row justify-between items-start p-4">
         <div className="flex flex-col items-start">
-          <div className="flex flex-row items-center gap-2">
-            <h3 className="text-lg font-semibold">{name}</h3>
-            <Badge className={cn("ml-2 capitalize", getStatusColor(status))}>
+          <div className="flex flex-row items-center gap-2 flex-wrap">
+            <h3 className="text-base font-semibold">{name}</h3>
+            <Badge className={cn("capitalize text-xs", getStatusColor(status))}>
               {status}
             </Badge>
           </div>
         </div>
-        <div className="flex items-center space-x-2">
+        <div className="flex items-center space-x-1">
           <TooltipProvider>
             <Tooltip>
               <TooltipTrigger asChild>
                 <Button
                   variant="ghost"
                   size="icon"
-                  className="h-8 w-8 text-blue-600 hover:text-blue-800 hover:bg-blue-100"
+                  className="h-7 w-7 text-blue-600 hover:text-blue-800 hover:bg-blue-100"
                   onClick={onEdit}
                 >
-                  <Edit className="h-4 w-4" />
+                  <Edit className="h-3.5 w-3.5" />
                   <span className="sr-only">Edit</span>
                 </Button>
               </TooltipTrigger>
@@ -82,10 +82,10 @@ const PersonCard: React.FC<PersonCardProps> = ({
                 <Button
                   variant="ghost"
                   size="icon"
-                  className="h-8 w-8 text-red-600 hover:text-red-800 hover:bg-red-100"
+                  className="h-7 w-7 text-red-600 hover:text-red-800 hover:bg-red-100"
                   onClick={onDelete}
                 >
-                  <Trash2 className="h-4 w-4" />
+                  <Trash2 className="h-3.5 w-3.5" />
                   <span className="sr-only">Delete</span>
                 </Button>
               </TooltipTrigger>
@@ -97,28 +97,34 @@ const PersonCard: React.FC<PersonCardProps> = ({
         </div>
       </CardHeader>
       
-      <CardContent className="pt-4">
-        <div className="grid grid-cols-[1fr_2fr] gap-y-2 text-sm">
-          <span className="text-gray-500 font-medium">Phone:</span>
-          <span>{phone}</span>
+      <CardContent className="pt-0 px-4 pb-4">
+        <div className="grid grid-cols-1 gap-y-1.5 text-sm">
+          <div className="flex justify-between items-center py-1 border-b border-gray-100">
+            <span className="text-gray-500 font-medium">Phone:</span>
+            <span className="text-right">{phone}</span>
+          </div>
           
-          <span className="text-gray-500 font-medium">Site Name:</span>
-          <span>{siteName}</span>
+          <div className="flex justify-between items-center py-1 border-b border-gray-100">
+            <span className="text-gray-500 font-medium">Site Name:</span>
+            <span className="text-right">{siteName}</span>
+          </div>
           
-          <span className="text-gray-500 font-medium">Created Date:</span>
-          <span>{createdDate}</span>
+          <div className="flex justify-between items-center py-1 border-b border-gray-100">
+            <span className="text-gray-500 font-medium">Created Date:</span>
+            <span className="text-right">{createdDate}</span>
+          </div>
           
-          <span className="text-gray-500 font-medium">Updated Date:</span>
-          <span>{updatedDate}</span>
+          <div className="flex justify-between items-center py-1 border-b border-gray-100">
+            <span className="text-gray-500 font-medium">Updated Date:</span>
+            <span className="text-right">{updatedDate}</span>
+          </div>
           
-          <span className="text-gray-500 font-medium">Assigned to:</span>
-          <span className="font-medium text-blue-700">{assignedTo}</span>
+          <div className="flex justify-between items-center py-1">
+            <span className="text-gray-500 font-medium">Assigned to:</span>
+            <span className="text-right font-medium text-blue-700">{assignedTo}</span>
+          </div>
         </div>
       </CardContent>
-      
-      <CardFooter className="pt-2 pb-4 text-xs text-gray-400 flex justify-end">
-        ID: 12345
-      </CardFooter>
     </Card>
   );
 };
